@@ -282,6 +282,24 @@ local function get_svn_status()
     return true
 end
 
+---
+-- Get the status of working dir
+-- @return {bool}
+---
+local function get_git_status_setting()
+    gitStatusSetting = io.popen("git --no-pager config -l 2>nul")
+
+    for line in gitStatusSetting:lines() do
+        if string.match(line, 'cmder.status=false') or string.match(line, 'cmder.cmdstatus=false') then
+          gitStatusSetting:close()
+          return false
+        end
+    end
+    gitStatusSetting:close()
+
+    return true
+end
+
 local function git_prompt_filter()
 
     -- Colors for git status
@@ -292,27 +310,30 @@ local function git_prompt_filter()
     }
 
     local git_dir = get_git_dir()
-    if git_dir then
-        -- if we're inside of git repo then try to detect current branch
-        local branch = get_git_branch(git_dir)
-        local color
-        if branch then
-            -- Has branch => therefore it is a git folder, now figure out status
-            local gitStatus = get_git_status()
-            local gitConflict = get_git_conflict()
 
-            color = colors.dirty
-            if gitStatus then
-                color = colors.clean
-            end
+    if get_git_status_setting() then
+      if git_dir then
+          -- if we're inside of git repo then try to detect current branch
+          local branch = get_git_branch(git_dir)
+          local color
+          if branch then
+              -- Has branch => therefore it is a git folder, now figure out status
+              local gitStatus = get_git_status()
+              local gitConflict = get_git_conflict()
 
-            if gitConflict then
-                color = colors.conflict
-            end 
+              color = colors.dirty
+              if gitStatus then
+                  color = colors.clean
+              end
 
-            clink.prompt.value = string.gsub(clink.prompt.value, "{git}", color.."("..verbatim(branch)..")")
-            return false
-        end
+              if gitConflict then
+                  color = colors.conflict
+              end 
+
+              clink.prompt.value = string.gsub(clink.prompt.value, "{git}", color.."("..verbatim(branch)..")")
+              return false
+          end
+      end
     end
 
     -- No git present or not in git file
@@ -387,7 +408,24 @@ local function svn_prompt_filter()
     return false
 end
 
+local function tilde_match (text, f, l)
+    if text == '~' then
+        clink.add_match(clink.get_env('userprofile'))
+        clink.matches_are_files()
+        return true
+    end
+
+    if text:sub(1, 1) == '~' then
+        clink.add_match(string.gsub(text, "~", clink.get_env('userprofile'), 1))
+        -- second match prevents adding a space so we can look for more matches
+        clink.add_match(string.gsub(text, "~", clink.get_env('userprofile'), 1) .. '+')
+        clink.matches_are_files()
+        return true
+    end
+end
+
 -- insert the set_prompt at the very beginning so that it runs first
+clink.register_match_generator(tilde_match, 1)
 clink.prompt.register_filter(set_prompt_filter, 1)
 clink.prompt.register_filter(hg_prompt_filter, 50)
 clink.prompt.register_filter(git_prompt_filter, 50)
