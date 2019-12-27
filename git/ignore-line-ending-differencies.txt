@@ -1,1 +1,9 @@
+Global approach
+
+Configure Git line endings handling on Linux or OS X:
+
+git config --global core.autocrlf input
+
+Configure Git line endings handling on Windows:
+
 git config --global core.autocrlf true
