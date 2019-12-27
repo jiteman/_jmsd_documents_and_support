@@ -1,9 +1,19 @@
 Global approach
 
-Configure Git line endings handling on Linux or OS X:
+	Configure Git line endings handling on Linux or OS X:
 
-git config --global core.autocrlf input
+		git config --global core.autocrlf input
 
-Configure Git line endings handling on Windows:
+	Configure Git line endings handling on Windows:
 
-git config --global core.autocrlf true
+		git config --global core.autocrlf true
+
+
+
+I had the same problem on the Mac after cloning a repository. It would assume all files had been changed.
+
+After running git config --global core.autocrlf input, it was still marking all files as changed. After looking for a fix I came across .gitattributes file in the home directory which had the following.
+
+* text=auto
+
+I commented it out and any other cloned repositories from now on were working fine.
