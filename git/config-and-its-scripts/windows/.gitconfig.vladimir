@@ -1,0 +1,24 @@
+[core]
+	editor = \"C:/Program Files (x86)/GitExtensions/GitExtensions.exe\" fileeditor
+[pull]
+	rebase = false
+[fetch]
+	prune = false
+[rebase]
+	autoStash = false
+[winUpdater]
+	recentlySeenVersion = 2.25.0.windows.1
+[user]
+	name = Vladimir Serdyuk
+	email = vserdyuk@tract.ru
+#[i18n]
+#	filesEncoding = windows-1251
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[mergetool]
+	path = C:/Program Files/Sublime Merge/sublime_merge.exe
+[mergetool]
+	path = C:/Program Files/Sublime Merge/sublime_merge.exe

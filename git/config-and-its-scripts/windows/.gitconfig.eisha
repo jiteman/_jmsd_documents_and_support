@@ -1,0 +1,27 @@
+[user]
+	name = Eugene Shaluhin
+	email = eisha@tract.ru
+[credential "https://github.com"]
+	username = jiteman
+[credential "https://gitlab.digispot.ru"]
+	username = eisha
+[core]
+	askpass = 
+	editor = \"C:/Program Files/notepad++/notepad++.exe\" -multiInst -nosession
+#	autocrlf = true
+[merge]
+	tool = winmerge
+[mergetool "winmerge"]
+	path = C:/Program Files/WinMerge/winmergeu.exe
+	cmd = \"C:/Program Files/WinMerge/winmergeu.exe\" -e -u  -wl -wr -fm -dl \"Mine: $LOCAL\" -dm \"Merged: $BASE\" -dr \"Theirs: $REMOTE\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" -o \"$MERGED\"
+[pull]
+	rebase = false
+[fetch]
+	prune = false
+[rebase]
+	autoStash = false
+[diff]
+	guitool = winmerge
+[difftool "winmerge"]
+	path = C:/Program Files/WinMerge/winmergeu.exe
+	cmd = \"C:/Program Files/WinMerge/winmergeu.exe\" -e -u \"$LOCAL\" \"$REMOTE\"
