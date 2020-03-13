@@ -1,8 +1,6 @@
-BOOST_INCLUDEDIR=/usr/local/src/boost_1_46_1
-BOOST_LIBRARYDIR=/usr/local/src/boost_1_46_1/stage/lib
+Boost_ROOT=/usr/local/src/boost_1_46_1
 
-BOOST_INCLUDEDIR=C:\libraries\boost\boost_1_72_0\include
-BOOST_LIBRARYDIR=C:\libraries\boost\boost_1_72_0\lib
+Boost_ROOT=C:\libraries\boost\boost_1_72_0
 
 On Windows:
 Add path to bin folder (with .dll files, moved from lib directory)
