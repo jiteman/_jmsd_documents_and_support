@@ -13,7 +13,7 @@ using gcc : 9 : g++-9.2.1 ;
 3.
 
 .\b2 architecture=x86 address-model=64 toolset=msvc-14.2 variant=debug,release link=shared runtime-link=shared threading=multi --build-dir=build-x64 --prefix=sdk\boost_1_72_0 -j6
-./b2 architecture=x86 address-model=64 toolset=gcc variant=debug,release link=shared runtime-link=shared threading=multi --build-dir=build-x64 --prefix=/user/local/share/(etc) -j6
+./b2 architecture=x86 address-model=64 toolset=gcc variant=release link=shared runtime-link=shared threading=multi --build-dir=_build-x64 -j4
 
 4.
 
