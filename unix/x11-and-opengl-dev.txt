@@ -1,11 +1,15 @@
 # X11/Xlib.h
-sudo apt-get install libx11-dev
+sudo apt install libx11-dev
 # GL/glx.h
-sudo apt-get install mesa-common-dev
+sudo apt install mesa-common-dev
 # GL/glu.h
-sudo apt-get install libglu1-mesa-dev
+sudo apt install libglu1-mesa-dev
+# EGL/egl.h
+sudo apt install libegl1-mesa-dev
 # X11/extensions/Xrandr.h
-sudo apt-get install libxrandr-dev
+sudo apt install libxrandr-dev
 # X11/extensions/XInput.h
-sudo apt-get install libxi-dev
+sudo apt install libxi-dev
+# alsa/asoundlib.h
+sudo apt install libasound2-dev
 
